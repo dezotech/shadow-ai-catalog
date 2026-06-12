@@ -8,13 +8,13 @@ A curated catalog of AI providers with **tier-scoped compliance metadata** — B
 availability, training-on-input, and data-retention facts — each backed by a
 **primary, vendor-owned source** and a `verifiedAt` date.
 
-Public AI-domain blocklists tell you *that* a host is an AI service. None of
-them tells you what that access *means for compliance*: does the provider train
-on user input? How long does it retain data? Is a BAA even available? And —
-critically — do those answers differ between the consumer tier your firewall
-log actually saw and the enterprise tier your procurement team negotiated?
-This catalog answers that second set of questions, with sources. As of v0.5.0
-it covers 49 providers.
+Public AI-domain blocklists tell you *that* a host is an AI service, and stop
+there. What that access *means for compliance* is a separate set of questions:
+does the provider train on user input? How long does it retain data? Is a BAA
+even available? And — critically — do those answers differ between the consumer
+tier your firewall log actually saw and the enterprise tier your procurement
+team negotiated? This catalog answers that second set, with sources. As of
+v0.5.0 it covers 49 providers.
 
 ## Design principles
 
@@ -118,7 +118,8 @@ by stage and name the file: unreadable path, invalid JSON, or schema mismatch.
 ### Consuming the raw JSON
 
 Non-TypeScript stacks can read the data directly — it ships in the package as
-a subpath export:
+a subpath export (the `with { type: 'json' }` import-attribute syntax needs
+Node 20.10+):
 
 ```javascript
 import catalog from 'shadow-ai-catalog/data/ai-providers.json' with { type: 'json' }
@@ -165,6 +166,7 @@ Each entry:
 | `compliance.consumer` / `compliance.enterprise` | Tier-scoped facts: `baaAvailable`, `trainsOnInput` (nullable), `dataRetention` (nullable). `enterprise` is optional. |
 | `category`, `riskTier`, `dualPurpose` | Classification. `dualPurpose: true` ⇒ a hostname hit goes to triage, not asserted as AI use. |
 | `jurisdiction` | ISO 3166-1 alpha-2, or `null`. |
+| `frameworkFlags` | Framework-relevant tags (e.g. `pii-risk`); may be empty. |
 | `sources`, `verifiedAt` | Provenance. Every positive claim cites a source; every entry is dated. |
 
 ## Versioning & freshness
