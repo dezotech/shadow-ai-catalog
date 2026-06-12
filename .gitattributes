@@ -1,0 +1,5 @@
+# shadow-ai-catalog reproducibility guard.
+# The loadCatalog error-diagnostics tests byte-compare against fixture files.
+# Git autocrlf would rewrite them to CRLF on Windows checkout and change parser
+# behavior. Pin the JSON fixtures to LF.
+tests/fixtures/*.json eol=lf
