@@ -1,0 +1,6 @@
+{
+  "version": "1.0",
+  "entries": [
+    { "id": "x", "hostnames": ["x.com"], "category": "ML Platform", "riskTier": "low" }
+  ]
+}
