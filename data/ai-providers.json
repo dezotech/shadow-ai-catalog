@@ -1,0 +1,967 @@
+{
+  "version": "0.5.0",
+  "entries": [
+    {
+      "id": "openai-chatgpt",
+      "hostnames": ["openai.com", "chatgpt.com", "oaistatic.com"],
+      "aliases": ["chat.openai.com"],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Until deleted by user; deleted chats and Temporary Chats purged within 30 days (legal/security holds excepted) / Apr-Sep 2025 consumer data under NYT-litigation legal hold (indefinite-retention order ended 2025-09-26)" },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API: 30-day default; ZDR endpoints under BAA" }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://openai.com/enterprise-privacy/",
+        "https://help.openai.com/en/articles/8660679-how-can-i-get-a-business-associate-agreement-baa-with-openai",
+        "https://openai.com/policies/row-terms-of-use/",
+        "https://openai.com/policies/how-your-data-is-used-to-improve-model-performance/",
+        "https://openai.com/index/response-to-nyt-data-demands/"
+      ],
+      "verifiedAt": "2026-06-11"
+    },
+    {
+      "id": "anthropic-claude",
+      "hostnames": ["anthropic.com", "claude.ai", "bridge.claudeusercontent.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": false, "dataRetention": "30 days (consumer default) / up to 5 years if opted into model training / up to 2 years for inputs+outputs flagged by trust-and-safety (classification scores up to 7 years)" },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data",
+        "https://privacy.anthropic.com/en/articles/7996868-is-my-data-used-for-model-training",
+        "https://privacy.anthropic.com/en/articles/10023580-is-my-data-used-for-model-training",
+        "https://privacy.claude.com/en/articles/8114513-business-associate-agreements-baa-for-commercial-customers",
+        "https://www.anthropic.com/legal/commercial-terms"
+      ],
+      "verifiedAt": "2026-06-11"
+    },
+    {
+      "id": "google-gemini",
+      "hostnames": ["gemini.google.com", "bard.google.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "18 months default (Gemini Apps Activity auto-delete, configurable 3/36 months or indefinite) / 72 hours when Keep Activity is off / human-reviewed chats kept up to 3 years and not deleted when you delete activity" }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://policies.google.com/terms?hl=en-US",
+        "https://support.google.com/gemini/answer/13594961"
+      ],
+      "verifiedAt": "2026-06-11"
+    },
+    {
+      "id": "perplexity",
+      "hostnames": ["perplexity.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Search",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "No fixed period — retained 'as long as is reasonably necessary' for the stated purposes (privacy policy effective 2026-02-05 sets no time window)" }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.perplexity.ai/hub/legal/terms-of-service",
+        "https://www.perplexity.ai/hub/legal/privacy-policy"
+      ],
+      "verifiedAt": "2026-06-11"
+    },
+    {
+      "id": "phind",
+      "hostnames": ["phind.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Search",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": ["https://www.ycombinator.com/companies/phind"],
+      "verifiedAt": "2026-06-07"
+    },
+    {
+      "id": "huggingface",
+      "hostnames": ["huggingface.co"],
+      "aliases": [],
+      "tiers": {},
+      "category": "ML Platform",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": true,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": ["https://huggingface.co/terms-of-service"],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "microsoft-copilot",
+      "hostnames": ["copilot.microsoft.com", "copilot.cloud.microsoft", "m365.cloud.microsoft"],
+      "aliases": [],
+      "tiers": { "m365.cloud.microsoft": "enterprise" },
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Consumer Copilot: 18 months default." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "Enterprise/M365 Copilot: data excluded from training, governed by enterprise controls." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://support.microsoft.com/en-us/topic/privacy-faq-for-microsoft-copilot-27b3a435-8dc9-4b55-9a4b-58eeb9647a7f",
+        "https://learn.microsoft.com/en-us/compliance/regulatory/offering-hipaa-hitech",
+        "https://www.microsoft.com/en-us/privacy/privacystatement"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "mistral",
+      "hostnames": ["mistral.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "API: 30 rolling days. Le Chat (consumer): until account/conversation deleted. Enterprise: not used for training." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "FR",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://legal.mistral.ai/terms/privacy-policy",
+        "https://legal.mistral.ai/terms/commercial-terms-of-service"
+      ],
+      "verifiedAt": "2026-06-11"
+    },
+    {
+      "id": "meta-ai",
+      "hostnames": ["meta.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Text transcripts up to 1 year by default; voice recordings up to 1 year (false activations deleted within 90 days)." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://www.meta.com/legal/quest/meta-ai-on-meta-quest-privacy-notice/",
+        "https://www.facebook.com/legal/ai-terms"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "deepseek",
+      "hostnames": ["deepseek.com"],
+      "aliases": ["platform.deepseek.com"],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "No fixed window ('as long as necessary'); data stored in the People's Republic of China." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "CN",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html",
+        "https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "xai-grok",
+      "hostnames": ["grok.com", "x.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Consumer Grok: deleted within 30 days of user deletion." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API: 30 days standard; Zero Data Retention available for enterprise." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://docs.x.ai/developers/faq/security",
+        "https://x.ai/legal/terms-of-service"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "cohere",
+      "hostnames": ["cohere.com"],
+      "aliases": ["dashboard.cohere.com", "api.cohere.com"],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": null, "dataRetention": "Enterprise/production API: generally 30 days. BAA scoped to custom-model development." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "CA",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://cohere.com/privacy",
+        "https://cohere.com/blog/hipaa-business-associate-agreements-for-custom-model-development",
+        "https://cohere.com/saas-agreement"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "poe",
+      "hostnames": ["poe.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Not specified by Poe/Quora; underlying model providers set their own (e.g. ~30 days)." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://poe.com/pages/tos",
+        "https://poe.com/pages/privacy",
+        "https://poe.com/pages/privacy-center"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "character-ai",
+      "hostnames": ["character.ai"],
+      "aliases": ["beta.character.ai"],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://policies.character.ai/privacy",
+        "https://policies.character.ai/tos"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "inflection-pi",
+      "hostnames": ["pi.ai"],
+      "aliases": ["hey.pi.ai", "inflection.ai"],
+      "tiers": {},
+      "category": "Generative AI - Assistant",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": ["https://inflection.ai/privacy-policy"],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "you-com",
+      "hostnames": ["you.com"],
+      "aliases": ["home.you.com"],
+      "tiers": {},
+      "category": "Generative AI - Search",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://you.com/privacy",
+        "https://you.com/terms",
+        "https://home.you.com/terms"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "github-copilot",
+      "hostnames": ["githubcopilot.com", "copilot.github.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Code",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-copilot-policies-as-an-individual-subscriber",
+        "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "cursor",
+      "hostnames": ["cursor.com", "cursor.so"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Code",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "Privacy Mode: code not stored/trained on." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.cursor.com/privacy",
+        "https://cursor.com/terms-of-service",
+        "https://cursor.com/docs/enterprise/baa"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "replit",
+      "hostnames": ["replit.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Code",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "On account deletion, data removed within 30 days; otherwise 'as long as necessary'." }
+      },
+      "dualPurpose": true,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://replit.com/privacy",
+        "https://replit.com/terms"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "codeium-windsurf",
+      "hostnames": ["codeium.com", "windsurf.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Code",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://cognition.ai/legal/privacy-policy"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "tabnine",
+      "hostnames": ["tabnine.com"],
+      "aliases": ["console.tabnine.com"],
+      "tiers": {},
+      "category": "Generative AI - Code",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": false, "dataRetention": "Zero code retention (ephemeral, discarded after inference); operational logs ~1 week." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "IL",
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.tabnine.com/code-privacy/",
+        "https://www.tabnine.com/privacy-policy/",
+        "https://trust.tabnine.com/"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "sourcegraph-cody",
+      "hostnames": ["sourcegraph.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Code",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": true,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://sourcegraph.com/terms/cody-notice",
+        "https://sourcegraph.com/terms/cloud",
+        "https://sourcegraph.com/terms/privacy"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "midjourney",
+      "hostnames": ["midjourney.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Image",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service",
+        "https://docs.midjourney.com/hc/en-us/articles/32083472637453-Privacy-Policy"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "stability-ai",
+      "hostnames": ["stability.ai"],
+      "aliases": ["platform.stability.ai", "dreamstudio.ai"],
+      "tiers": {},
+      "category": "Generative AI - Image",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://stability.ai/privacypolicy",
+        "https://stability.ai/terms-of-service"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "leonardo-ai",
+      "hostnames": ["leonardo.ai"],
+      "aliases": ["app.leonardo.ai"],
+      "tiers": {},
+      "category": "Generative AI - Image",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "AU",
+      "frameworkFlags": [],
+      "sources": [
+        "https://leonardo.ai/terms-of-service",
+        "https://leonardo.ai/data-processing-addendum/",
+        "https://intercom.help/leonardo-ai/en/articles/8044029-private-public-images"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "ideogram",
+      "hostnames": ["ideogram.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Image",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://ideogram.ai/legal/tos",
+        "https://ideogram.ai/legal/api-tos",
+        "https://ideogram.ai/legal/privacy"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "adobe-firefly",
+      "hostnames": ["firefly.adobe.com"],
+      "aliases": ["app.firefly.adobe.com"],
+      "tiers": {},
+      "category": "Generative AI - Image",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://blog.adobe.com/en/publish/2024/06/06/clarification-adobe-terms-of-use",
+        "https://www.adobe.com/cc-shared/assets/pdf/legal/terms/enterprise/pdfs/generalterms-na-2024v1.pdf"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "elevenlabs",
+      "hostnames": ["elevenlabs.io"],
+      "aliases": ["api.elevenlabs.io"],
+      "tiers": {},
+      "category": "Generative AI - Audio/Video",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Voice/biometric data up to 3 years after last interaction." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://elevenlabs.io/privacy-policy",
+        "https://elevenlabs.io/terms-of-use"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "descript",
+      "hostnames": ["descript.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Audio/Video",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Voiceprints up to 3 years after last access; projects deleted within 30 days of request." }
+      },
+      "dualPurpose": true,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://www.descript.com/privacy",
+        "https://www.descript.com/terms",
+        "https://www.descript.com/security"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "synthesia",
+      "hostnames": ["synthesia.io"],
+      "aliases": [],
+      "tiers": {},
+      "category": "Generative AI - Audio/Video",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Customer Data deleted within 90 days after account termination." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "GB",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://www.synthesia.io/legal/user-terms-of-service",
+        "https://www.synthesia.io/legal/data-processing-agreement",
+        "https://security.synthesia.io/faq"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "heygen",
+      "hostnames": ["heygen.com"],
+      "aliases": ["app.heygen.com"],
+      "tiers": {},
+      "category": "Generative AI - Audio/Video",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "30 days in backup after account deletion, then erased; deletion requests processed within 72 hours." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://www.heygen.com/privacy",
+        "https://www.heygen.com/terms"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "suno",
+      "hostnames": ["suno.com"],
+      "aliases": ["app.suno.com"],
+      "tiers": {},
+      "category": "Generative AI - Audio/Video",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Voice/biometric data no longer than 3 years after last interaction." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://suno.com/privacy-policy",
+        "https://suno.com/terms-of-service"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "runway",
+      "hostnames": ["runwayml.com"],
+      "aliases": ["app.runwayml.com"],
+      "tiers": {},
+      "category": "Generative AI - Audio/Video",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Face scans and voiceprints up to 3 years after last interaction." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://runwayml.com/privacy-policy",
+        "https://runwayml.com/terms-of-use"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "pika",
+      "hostnames": ["pika.art"],
+      "aliases": ["launch.pika.art"],
+      "tiers": {},
+      "category": "Generative AI - Audio/Video",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://pika.art/terms-of-service",
+        "https://pika.art/privacy-policy"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "notion-ai",
+      "hostnames": ["notion.so", "notion.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Productivity/Embedded",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": false, "dataRetention": "Non-Enterprise: LLM providers retain up to 30 days. Embeddings deleted within 60 days of page/workspace deletion." },
+        "enterprise": { "baaAvailable": false, "trainsOnInput": false, "dataRetention": "Enterprise: zero retention. Notion's BAA EXPLICITLY EXCLUDES Notion AI — no BAA coverage for AI features even on Enterprise." }
+      },
+      "dualPurpose": true,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.notion.com/help/notion-ai-security-practices",
+        "https://www.notion.com/help/hipaa",
+        "https://www.notion.so/Personal-Use-Terms-of-Service-00e4e5d0f2b9411cbee6493f15779500"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "grammarly",
+      "hostnames": ["grammarly.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Productivity/Embedded",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": null },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://support.grammarly.com/hc/en-us/articles/25555503115277-Product-Improvement-and-Training-Control",
+        "https://www.grammarly.com/terms/customer-business-agreement",
+        "https://www.grammarly.com/privacy-policy"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "jasper",
+      "hostnames": ["jasper.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Productivity/Embedded",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": null,
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.jasper.ai/trust",
+        "https://www.jasper.ai/legal/dpa",
+        "https://www.jasper.ai/legal/privacy"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "copy-ai",
+      "hostnames": ["copy.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Productivity/Embedded",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.copy.ai/terms-of-service",
+        "https://www.copy.ai/privacy-notice"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "gamma",
+      "hostnames": ["gamma.app"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Productivity/Embedded",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://help.gamma.app/en/articles/12281928-does-gamma-use-my-content-to-train-its-ai-features",
+        "https://gamma.app/terms"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "deepl",
+      "hostnames": ["deepl.com"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Productivity/Embedded",
+      "riskTier": "medium",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Free tier: texts processed to train neural networks. Pro/paid: not stored permanently; document metadata deleted after 14 days." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "DE",
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.deepl.com/privacy",
+        "https://www.deepl.com/en/pro-license",
+        "https://www.deepl.com/en/pro-data-security"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "otter-ai",
+      "hostnames": ["otter.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Meeting/Transcription",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Trash items deleted after 30 days; account data 'as long as necessary'. Trains on de-identified audio/transcripts." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://otter.ai/privacy",
+        "https://otter.ai/terms-of-service",
+        "https://otter.ai/blog/otter-ai-achieves-hipaa-compliance"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "fireflies-ai",
+      "hostnames": ["fireflies.ai"],
+      "aliases": ["app.fireflies.ai"],
+      "tiers": {},
+      "category": "AI - Meeting/Transcription",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Account data deleted within 30 days of closure." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "Zero data retention with third-party model vendors (paid tier)." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://fireflies.ai/privacy",
+        "https://fireflies.ai/hipaa",
+        "https://fireflies.ai/terms-of-service"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "fathom",
+      "hostnames": ["fathom.video", "fathom.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Meeting/Transcription",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Deleted content removed within 30 days of account deletion request. Trains in-house on de-identified data." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": null, "dataRetention": null }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://fathom.ai/privacy",
+        "https://fathom.ai/terms",
+        "https://www.fathom.ai/baa"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "tldv",
+      "hostnames": ["tldv.io"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Meeting/Transcription",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Free users: recordings/transcripts 3 months; paying users: until account deletion." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "DE",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://tldv.io/privacy/",
+        "https://tldv.io/terms/"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "read-ai",
+      "hostnames": ["read.ai"],
+      "aliases": [],
+      "tiers": {},
+      "category": "AI - Meeting/Transcription",
+      "riskTier": "high",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Audio/video retained no longer than 2 years." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": null, "dataRetention": "Paid accounts until cancellation or deletion." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": ["pii-risk"],
+      "sources": [
+        "https://read.ai/privacy",
+        "https://www.read.ai/termsofservice"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "replicate",
+      "hostnames": ["replicate.com"],
+      "aliases": ["api.replicate.com"],
+      "tiers": {},
+      "category": "ML Platform",
+      "riskTier": "low",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "API inference inputs/outputs deleted after 1 hour by default; web UI predictions persist; fine-tuning weights until deleted." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://replicate.com/privacy",
+        "https://replicate.com/terms",
+        "https://replicate.com/docs/topics/predictions/data-retention"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "together-ai",
+      "hostnames": ["together.ai", "together.xyz"],
+      "aliases": ["api.together.xyz", "api.together.ai"],
+      "tiers": {},
+      "category": "ML Platform",
+      "riskTier": "low",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Zero Data Retention option available; without it, prompts/responses not stored for training, metadata retained." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://www.together.ai/privacy",
+        "https://www.together.ai/terms-of-service"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "groq",
+      "hostnames": ["groq.com"],
+      "aliases": ["console.groq.com", "api.groq.com"],
+      "tiers": {},
+      "category": "ML Platform",
+      "riskTier": "low",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Inference inputs/outputs not retained by default; batch files 30 days; account data deleted within 30 days of termination." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API-tier: customer business associate addendum available." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://groq.com/privacy-policy/",
+        "https://groq.com/terms-of-use/",
+        "https://console.groq.com/docs/your-data",
+        "https://console.groq.com/docs/legal/customer-business-associate-addendum"
+      ],
+      "verifiedAt": "2026-06-05"
+    },
+    {
+      "id": "openrouter",
+      "hostnames": ["openrouter.ai"],
+      "aliases": ["api.openrouter.ai"],
+      "tiers": {},
+      "category": "ML Platform",
+      "riskTier": "low",
+      "compliance": {
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Prompt content not stored by default (metadata only); prompt logging is opt-in." }
+      },
+      "dualPurpose": false,
+      "jurisdiction": "US",
+      "frameworkFlags": [],
+      "sources": [
+        "https://openrouter.ai/privacy",
+        "https://openrouter.ai/terms"
+      ],
+      "verifiedAt": "2026-06-05"
+    }
+  ]
+}
