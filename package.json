@@ -1,0 +1,45 @@
+{
+  "name": "shadow-ai-catalog",
+  "version": "0.5.0",
+  "description": "Curated catalog of AI providers with tier-scoped compliance metadata (BAA availability, training-on-input, data retention), primary sources, and verifiedAt dates. The data layer behind shadow-scan.",
+  "license": "(MIT AND CC-BY-4.0)",
+  "type": "module",
+  "keywords": [
+    "shadow-ai",
+    "ai-governance",
+    "compliance",
+    "eu-ai-act",
+    "lgpd",
+    "ai-catalog",
+    "data-retention"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dezotech/shadow-ai-catalog.git"
+  },
+  "engines": { "node": ">=20" },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./data/ai-providers.json": "./data/ai-providers.json"
+  },
+  "files": ["dist", "data", "LICENSE", "LICENSE-DATA"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "verify": "npm run typecheck && npm test",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tldts": "^7.4.2",
+    "typescript": "^5.5.0",
+    "vitest": "^4.1.8"
+  }
+}
