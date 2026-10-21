@@ -58,7 +58,9 @@ export const CATALOG_CATEGORIES = [
 ] as const
 
 export function tierOfHost(entry: CatalogEntry, host: string): 'consumer' | 'enterprise' {
-  return entry.tiers[host.toLowerCase()] ?? 'consumer'
+  const normalizedHost = host.toLowerCase()
+  const match = Object.entries(entry.tiers).find(([key]) => key.toLowerCase() === normalizedHost)
+  return match?.[1] ?? 'consumer'
 }
 
 export function complianceForHost(entry: CatalogEntry, host: string): ComplianceFacts {

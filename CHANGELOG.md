@@ -7,10 +7,15 @@
   OpenAI API alias and allow tier keys to reference explicit aliases. Shared
   web hosts, unmapped API hosts, and hostname lookalikes keep consumer defaults;
   tier mappings do not extend to subdomains.
+- Resolve explicit tier keys case-insensitively as well as observed hosts,
+  including uppercase and mixed-case keys in custom catalogs. Exact hostname
+  boundaries and consumer fallback are preserved.
 - Add regression coverage for API attribution, case-insensitive lookup, consumer
   controls, and hostname boundaries. Add vendor API endpoint documentation and
-  the Groq Services Agreement as provenance; policy values and their original
-  `verifiedAt` dates are unchanged.
+  the Groq Services Agreement as provenance. Re-check OpenAI and Groq sources
+  on 2026-10-21 and refresh their `verifiedAt` dates. Qualify API retention by
+  endpoint/features, replace the Groq API BAA text with retention information,
+  and remove the unsupported fixed account-data deletion deadline.
 - Pin CI checkout and Node setup actions to releases using Node 24. Refresh the
   development dependency lockfile to remove six reported advisories; `npm audit`
   reports zero findings. Runtime dependencies are unchanged.

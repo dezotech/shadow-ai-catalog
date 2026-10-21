@@ -49,6 +49,41 @@ describe('tier-scoped schema', () => {
     expect(tierOfHost(e, 'UNKNOWN.demo.com')).toBe('consumer')
   })
 
+  it.each(['ENTERPRISE.DEMO.COM', 'Enterprise.Demo.Com'])(
+    'tierOfHost resolves the exact %s key case-insensitively',
+    (key) => {
+      const e = CatalogEntrySchema.parse({ ...base, tiers: { [key]: 'enterprise' } })
+      expect(e.tiers).toEqual({ [key]: 'enterprise' })
+      for (const host of ['enterprise.demo.com', 'ENTERPRISE.DEMO.COM', 'Enterprise.Demo.Com']) {
+        expect(tierOfHost(e, host)).toBe('enterprise')
+      }
+    },
+  )
+
+  it('complianceForHost selects facts through a mixed-case tier key', () => {
+    const e = CatalogEntrySchema.parse({
+      ...base,
+      tiers: { 'Enterprise.Demo.Com': 'enterprise' },
+    })
+    expect(complianceForHost(e, 'enterprise.demo.com')).toEqual(e.compliance.enterprise)
+  })
+
+  it('mixed-case tier keys preserve exact hostname boundaries and consumer fallback', () => {
+    const e = CatalogEntrySchema.parse({
+      ...base,
+      tiers: { 'Enterprise.Demo.Com': 'enterprise' },
+    })
+    for (const host of [
+      'child.enterprise.demo.com',
+      'enterprise.demo.com.example.com',
+      'other-enterprise.demo.com',
+      'unknown.demo.com',
+    ]) {
+      expect(tierOfHost(e, host)).toBe('consumer')
+      expect(complianceForHost(e, host)).toEqual(e.compliance.consumer)
+    }
+  })
+
   it('complianceForHost returns the fact for the host tier (consumer host -> NO BAA)', () => {
     const e = CatalogEntrySchema.parse(base)
     expect(complianceForHost(e, 'demo.com').baaAvailable).toBe(false)
