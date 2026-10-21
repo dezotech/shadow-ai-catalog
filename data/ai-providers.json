@@ -9,7 +9,7 @@
       "category": "Generative AI - Assistant",
       "riskTier": "high",
       "compliance": {
-        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Until deleted by user; deleted chats and Temporary Chats purged within 30 days (legal/security holds excepted) / Apr-Sep 2025 consumer data under NYT-litigation legal hold (indefinite-retention order ended 2025-09-26)" },
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Chats remain until deleted by user; deleted chats are scheduled for permanent deletion within 30 days unless already de-identified and disassociated from the account or retained for legal/security obligations. Temporary Chats may be kept up to 30 days for safety, subject to legal holds. Limited historical Apr-Sep 2025 data remains under NYT-litigation legal hold (broad indefinite-retention order ended 2025-09-26)." },
         "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API: abuse-monitoring logs up to 30 days by default, with legal and safety exceptions; application-state retention varies by endpoint. Approved ZDR controls have endpoint and feature limitations." }
       },
       "dualPurpose": false,

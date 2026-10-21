@@ -7,7 +7,7 @@ Other providers retain their existing verification dates.
 ## OpenAI
 
 - [Model improvement](https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance): individual-plan content may be used for training with opt-out controls; API inputs/outputs are not used by default.
-- [Chat retention](https://help.openai.com/en/articles/8983778-chat-and-file-retention-in-chatgpt): chats persist until deleted; deletion and temporary-chat retention have 30-day windows and exceptions.
+- [Chat retention](https://help.openai.com/en/articles/8983778-chat-and-file-retention-in-chatgpt): chats persist until deleted; deleted chats are scheduled for deletion within 30 days, except content already de-identified and disassociated from the account or retained for legal/security obligations. Temporary Chats may be kept up to 30 days for safety, subject to legal holds.
 - [Historical legal hold](https://openai.com/index/response-to-nyt-data-demands/): the broad order ended in September 2025; limited historical April–September 2025 data remains separately held. Preserve this qualification in consumer retention.
 - [API data controls](https://developers.openai.com/api/docs/guides/your-data): distinguish abuse-monitoring logs from endpoint-specific application state. ZDR needs approval and has feature/endpoint limitations; BAA availability does not imply ZDR or signed coverage.
 - [API BAA availability](https://help.openai.com/en/articles/8660679-getting-a-business-associate-agreement-for-the-openai-api): eligibility and acceptance are required. Special sales-managed/clinical ChatGPT arrangements cannot be inferred from a shared web hostname.

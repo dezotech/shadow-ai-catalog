@@ -15,7 +15,9 @@
   the Groq Services Agreement as provenance. Re-check OpenAI and Groq sources
   on 2026-10-21 and refresh their `verifiedAt` dates. Qualify API retention by
   endpoint/features, replace the Groq API BAA text with retention information,
-  and remove the unsupported fixed account-data deletion deadline.
+  and remove the unsupported fixed account-data deletion deadline. Qualify
+  OpenAI consumer deletion with the de-identification exception and limited
+  historical legal hold.
 - Pin CI checkout and Node setup actions to releases using Node 24. Refresh the
   development dependency lockfile to remove six reported advisories; `npm audit`
   reports zero findings. Runtime dependencies are unchanged.
