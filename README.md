@@ -40,6 +40,12 @@ the maintainer reads it and confirms it *supports* the claim before merge.
 `dualPurpose` (the domain serves substantial non-AI use) routes a hostname hit
 to manual triage instead of asserting AI use.
 
+Tier keys are exact, case-insensitive hostnames, including explicitly declared
+aliases. They do not apply to sibling hosts or subdomains. `api.openai.com`
+and `api.groq.com` select their existing API facts through the `enterprise`
+label; shared web hosts keep the consumer fallback. A hostname identifies the
+policy scope; `baaAvailable` describes availability, not a signed agreement.
+
 ## Part of a larger project
 
 This catalog is the **open data layer** of [shadow-scan](https://github.com/dezotech/shadow-scan),
@@ -75,7 +81,7 @@ npm install shadow-ai-catalog
 import { loadCatalog, complianceForHost, tierOfHost } from 'shadow-ai-catalog'
 
 const catalog = loadCatalog() // bundled data/ai-providers.json
-console.log(catalog.version, catalog.entries.length) // 0.5.0 49
+console.log(catalog.version, catalog.entries.length) // 0.5.1 49 (prepared release)
 
 // The same entry answers differently depending on the host you observed:
 const copilot = catalog.entries.find((e) => e.id === 'microsoft-copilot')!
@@ -114,6 +120,13 @@ hits to manual review instead of counting them as findings.
 `loadCatalog(path)` accepts an explicit path, so you can run with a catalog
 newer than the one bundled in your installed version. Failures are diagnosed
 by stage and name the file: unreadable path, invalid JSON, or schema mismatch.
+
+The API-host attribution correction is prepared as `0.5.1`, pending release;
+the published `0.5.0` package is unchanged. Until `0.5.1` is published, pass this
+checkout's corrected `data/ai-providers.json` to `loadCatalog(path)` or
+shadow-scan's `--catalog <path-to-corrected-json>` option. Its distinct catalog
+version makes the changed curation visible to scans and comparisons. Consumers
+can update their exact npm pin after the catalog release is published.
 
 ### Consuming the raw JSON
 
@@ -162,7 +175,7 @@ Each entry:
 | `id` | Stable slug. |
 | `hostnames` | Registrable domains / curated FQDNs that identify the service. |
 | `aliases` | Alternate hostnames folded into this entry. |
-| `tiers` | Per-host tier map. A host **absent** here defaults to `consumer` — the conservative, log-observable tier. List a host only when it is the enterprise/API tier. |
+| `tiers` | Exact, case-insensitive host-to-tier map; keys must be explicitly declared in `hostnames` or `aliases`. A host **absent** here defaults to `consumer`. List a host only when it is the enterprise/API tier; mappings do not extend to subdomains. |
 | `compliance.consumer` / `compliance.enterprise` | Tier-scoped facts: `baaAvailable`, `trainsOnInput` (nullable), `dataRetention` (nullable). `enterprise` is optional. |
 | `category`, `riskTier`, `dualPurpose` | Classification. `dualPurpose: true` ⇒ a hostname hit goes to triage, not asserted as AI use. |
 | `jurisdiction` | ISO 3166-1 alpha-2, or `null`. |

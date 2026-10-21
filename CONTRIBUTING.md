@@ -16,6 +16,9 @@ by maintainer source review.
 - No hostname is a bare public suffix or redundant with a broader same-entry
   domain; no hostname/alias collides across entries; ids are unique; categories
   are from the approved taxonomy.
+- Every `tiers` key is explicitly declared in the entry's `hostnames` or
+  `aliases`. Tier lookup is exact and case-insensitive; no mapping is inherited
+  by subdomains or inferred from an `api` prefix.
 
 CI proves a source **exists**. It does NOT prove the source **supports** the
 claim — that is the maintainer's review job (see below).
@@ -44,7 +47,19 @@ when the domain also serves public, non-account content — that produces false
 positives attributing a bystander's traffic to AI use. Prefer the **curated FQDN
 actually seen in logs** over a broad parent domain. Justify your choice in the PR.
 
+Provider detection and policy attribution have different scopes. If a provider's
+parent domain already detects an API endpoint, declare that endpoint in
+`aliases` before adding an exact `tiers` override. Use vendor documentation to
+verify the endpoint and the applicable policy. Keep shared product hosts on
+consumer defaults when a hostname alone cannot identify the contract or plan.
+
 ## PR checklist
+
+Prepare package, catalog, and lockfile root versions together for curation
+changes, and document the release as Unreleased until published. The API-host
+correction is prepared as `0.5.1`, pending release; published `0.5.0` remains
+unchanged. Consumers can use the corrected JSON through `--catalog` while
+keeping their npm pin at `0.5.0`, then update the pin after `0.5.1` is published.
 
 The PR template will ask you to confirm the above. Run `npm run verify` locally
 before opening the PR.

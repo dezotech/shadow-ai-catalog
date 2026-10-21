@@ -43,10 +43,11 @@ describe('catalog invariants', () => {
     }
   })
 
-  it('tiers map only references declared hostnames', () => {
+  it('tiers map only references explicitly declared hostnames or aliases', () => {
     for (const e of cat.entries) {
       for (const host of Object.keys(e.tiers)) {
-        expect(e.hostnames.map((h) => h.toLowerCase()), `${e.id}: tier host "${host}" not in hostnames`).toContain(host.toLowerCase())
+        const declared = [...e.hostnames, ...e.aliases].map((h) => h.toLowerCase())
+        expect(declared, `${e.id}: tier host "${host}" not in hostnames or aliases`).toContain(host.toLowerCase())
       }
     }
   })

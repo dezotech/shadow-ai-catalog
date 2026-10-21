@@ -1,28 +1,32 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "entries": [
     {
       "id": "openai-chatgpt",
       "hostnames": ["openai.com", "chatgpt.com", "oaistatic.com"],
-      "aliases": ["chat.openai.com"],
-      "tiers": {},
+      "aliases": ["chat.openai.com", "api.openai.com"],
+      "tiers": { "api.openai.com": "enterprise" },
       "category": "Generative AI - Assistant",
       "riskTier": "high",
       "compliance": {
-        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Until deleted by user; deleted chats and Temporary Chats purged within 30 days (legal/security holds excepted) / Apr-Sep 2025 consumer data under NYT-litigation legal hold (indefinite-retention order ended 2025-09-26)" },
-        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API: 30-day default; ZDR endpoints under BAA" }
+        "consumer": { "baaAvailable": false, "trainsOnInput": true, "dataRetention": "Chats remain until deleted by user; deleted chats are scheduled for permanent deletion within 30 days unless already de-identified and disassociated from the account or retained for legal/security obligations. Temporary Chats may be kept up to 30 days for safety, subject to legal holds. Limited historical Apr-Sep 2025 data remains under NYT-litigation legal hold (broad indefinite-retention order ended 2025-09-26)." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API: abuse-monitoring logs up to 30 days by default, with legal and safety exceptions; application-state retention varies by endpoint. Approved ZDR controls have endpoint and feature limitations." }
       },
       "dualPurpose": false,
       "jurisdiction": "US",
       "frameworkFlags": ["pii-risk"],
       "sources": [
+        "https://developers.openai.com/api/reference/overview",
         "https://openai.com/enterprise-privacy/",
         "https://help.openai.com/en/articles/8660679-how-can-i-get-a-business-associate-agreement-baa-with-openai",
         "https://openai.com/policies/row-terms-of-use/",
         "https://openai.com/policies/how-your-data-is-used-to-improve-model-performance/",
+        "https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance",
+        "https://help.openai.com/en/articles/8983778-chat-and-file-retention-in-chatgpt",
+        "https://developers.openai.com/api/docs/guides/your-data",
         "https://openai.com/index/response-to-nyt-data-demands/"
       ],
-      "verifiedAt": "2026-06-11"
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "anthropic-claude",
@@ -926,12 +930,12 @@
       "id": "groq",
       "hostnames": ["groq.com"],
       "aliases": ["console.groq.com", "api.groq.com"],
-      "tiers": {},
+      "tiers": { "api.groq.com": "enterprise" },
       "category": "ML Platform",
       "riskTier": "low",
       "compliance": {
-        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Inference inputs/outputs not retained by default; batch files 30 days; account data deleted within 30 days of termination." },
-        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API-tier: customer business associate addendum available." }
+        "consumer": { "baaAvailable": false, "trainsOnInput": null, "dataRetention": "Inference inputs/outputs not retained by default; batch files up to 30 days; fine-tuning data until deleted; reliability/abuse logs up to 30 days unless legally required longer. Account-data retention depends on the privacy-policy purposes and legal requirements." },
+        "enterprise": { "baaAvailable": true, "trainsOnInput": false, "dataRetention": "API: inference inputs/outputs not retained by default; reliability/abuse logs up to 30 days unless legally required longer; batch files up to 30 days; fine-tuning data until deleted. ZDR settings disable retention-dependent features." }
       },
       "dualPurpose": false,
       "jurisdiction": "US",
@@ -940,9 +944,11 @@
         "https://groq.com/privacy-policy/",
         "https://groq.com/terms-of-use/",
         "https://console.groq.com/docs/your-data",
+        "https://console.groq.com/docs/openai",
+        "https://console.groq.com/docs/legal/services-agreement",
         "https://console.groq.com/docs/legal/customer-business-associate-addendum"
       ],
-      "verifiedAt": "2026-06-05"
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "openrouter",

@@ -49,6 +49,41 @@ describe('tier-scoped schema', () => {
     expect(tierOfHost(e, 'UNKNOWN.demo.com')).toBe('consumer')
   })
 
+  it.each(['ENTERPRISE.DEMO.COM', 'Enterprise.Demo.Com'])(
+    'tierOfHost resolves the exact %s key case-insensitively',
+    (key) => {
+      const e = CatalogEntrySchema.parse({ ...base, tiers: { [key]: 'enterprise' } })
+      expect(e.tiers).toEqual({ [key]: 'enterprise' })
+      for (const host of ['enterprise.demo.com', 'ENTERPRISE.DEMO.COM', 'Enterprise.Demo.Com']) {
+        expect(tierOfHost(e, host)).toBe('enterprise')
+      }
+    },
+  )
+
+  it('complianceForHost selects facts through a mixed-case tier key', () => {
+    const e = CatalogEntrySchema.parse({
+      ...base,
+      tiers: { 'Enterprise.Demo.Com': 'enterprise' },
+    })
+    expect(complianceForHost(e, 'enterprise.demo.com')).toEqual(e.compliance.enterprise)
+  })
+
+  it('mixed-case tier keys preserve exact hostname boundaries and consumer fallback', () => {
+    const e = CatalogEntrySchema.parse({
+      ...base,
+      tiers: { 'Enterprise.Demo.Com': 'enterprise' },
+    })
+    for (const host of [
+      'child.enterprise.demo.com',
+      'enterprise.demo.com.example.com',
+      'other-enterprise.demo.com',
+      'unknown.demo.com',
+    ]) {
+      expect(tierOfHost(e, host)).toBe('consumer')
+      expect(complianceForHost(e, host)).toEqual(e.compliance.consumer)
+    }
+  })
+
   it('complianceForHost returns the fact for the host tier (consumer host -> NO BAA)', () => {
     const e = CatalogEntrySchema.parse(base)
     expect(complianceForHost(e, 'demo.com').baaAvailable).toBe(false)
@@ -101,6 +136,57 @@ describe('catalog', () => {
     expect(CATALOG_CATEGORIES.length).toBe(8)
     expect(CATALOG_CATEGORIES).toContain('Generative AI - Code')
     expect(CATALOG_CATEGORIES).toContain('AI - Meeting/Transcription')
+  })
+})
+
+describe('explicit API host policy attribution', () => {
+  const cat = loadCatalog()
+  const entry = (id: string) => {
+    const e = cat.entries.find((x) => x.id === id)
+    if (!e) throw new Error(`entry ${id} missing from catalog`)
+    return e
+  }
+
+  it.each([
+    ['openai-chatgpt', 'api.openai.com'],
+    ['groq', 'api.groq.com'],
+  ])('%s: %s resolves the curated API policy', (id, host) => {
+    const e = entry(id)
+    for (const observed of [host, host.toUpperCase()]) {
+      expect(tierOfHost(e, observed)).toBe('enterprise')
+      expect(complianceForHost(e, observed)).toMatchObject({
+        baaAvailable: true,
+        trainsOnInput: false,
+        dataRetention: expect.stringMatching(/API/),
+      })
+    }
+  })
+
+  it.each([
+    ['openai-chatgpt', 'openai.com', true],
+    ['openai-chatgpt', 'chatgpt.com', true],
+    ['openai-chatgpt', 'chat.openai.com', true],
+    ['openai-chatgpt', 'platform.openai.com', true],
+    ['groq', 'groq.com', null],
+    ['groq', 'console.groq.com', null],
+    ['cohere', 'api.cohere.com', null],
+    ['elevenlabs', 'api.elevenlabs.io', true],
+  ])('%s: shared or unmapped host %s keeps consumer facts', (id, host, trainsOnInput) => {
+    const e = entry(id)
+    expect(tierOfHost(e, host)).toBe('consumer')
+    expect(complianceForHost(e, host)).toMatchObject({ baaAvailable: false, trainsOnInput })
+  })
+
+  it.each([
+    ['openai-chatgpt', 'api.openai.com'],
+    ['groq', 'api.groq.com'],
+  ])('%s: API policy applies only to the exact host', (id, host) => {
+    const e = entry(id)
+    for (const observed of [`child.${host}`, `${host}.example.com`, `other-${host}`]) {
+      expect(tierOfHost(e, observed)).toBe('consumer')
+      expect(complianceForHost(e, observed).baaAvailable).toBe(false)
+      expect(complianceForHost(e, observed).trainsOnInput).toBe(e.compliance.consumer.trainsOnInput)
+    }
   })
 })
 
