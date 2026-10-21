@@ -104,6 +104,57 @@ describe('catalog', () => {
   })
 })
 
+describe('explicit API host policy attribution', () => {
+  const cat = loadCatalog()
+  const entry = (id: string) => {
+    const e = cat.entries.find((x) => x.id === id)
+    if (!e) throw new Error(`entry ${id} missing from catalog`)
+    return e
+  }
+
+  it.each([
+    ['openai-chatgpt', 'api.openai.com'],
+    ['groq', 'api.groq.com'],
+  ])('%s: %s resolves the curated API policy', (id, host) => {
+    const e = entry(id)
+    for (const observed of [host, host.toUpperCase()]) {
+      expect(tierOfHost(e, observed)).toBe('enterprise')
+      expect(complianceForHost(e, observed)).toMatchObject({
+        baaAvailable: true,
+        trainsOnInput: false,
+        dataRetention: expect.stringMatching(/API/),
+      })
+    }
+  })
+
+  it.each([
+    ['openai-chatgpt', 'openai.com', true],
+    ['openai-chatgpt', 'chatgpt.com', true],
+    ['openai-chatgpt', 'chat.openai.com', true],
+    ['openai-chatgpt', 'platform.openai.com', true],
+    ['groq', 'groq.com', null],
+    ['groq', 'console.groq.com', null],
+    ['cohere', 'api.cohere.com', null],
+    ['elevenlabs', 'api.elevenlabs.io', true],
+  ])('%s: shared or unmapped host %s keeps consumer facts', (id, host, trainsOnInput) => {
+    const e = entry(id)
+    expect(tierOfHost(e, host)).toBe('consumer')
+    expect(complianceForHost(e, host)).toMatchObject({ baaAvailable: false, trainsOnInput })
+  })
+
+  it.each([
+    ['openai-chatgpt', 'api.openai.com'],
+    ['groq', 'api.groq.com'],
+  ])('%s: API policy applies only to the exact host', (id, host) => {
+    const e = entry(id)
+    for (const observed of [`child.${host}`, `${host}.example.com`, `other-${host}`]) {
+      expect(tierOfHost(e, observed)).toBe('consumer')
+      expect(complianceForHost(e, observed).baaAvailable).toBe(false)
+      expect(complianceForHost(e, observed).trainsOnInput).toBe(e.compliance.consumer.trainsOnInput)
+    }
+  })
+})
+
 describe('curated consumer dataRetention facts (W1)', () => {
   const cat = loadCatalog()
   const entry = (id: string) => {

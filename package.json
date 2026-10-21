@@ -1,6 +1,6 @@
 {
   "name": "shadow-ai-catalog",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Curated catalog of AI providers with tier-scoped compliance metadata (BAA availability, training-on-input, data retention), primary sources, and verifiedAt dates. The data layer behind shadow-scan.",
   "license": "(MIT AND CC-BY-4.0)",
   "type": "module",
