@@ -11,6 +11,9 @@
   controls, and hostname boundaries. Add vendor API endpoint documentation and
   the Groq Services Agreement as provenance; policy values and their original
   `verifiedAt` dates are unchanged.
+- Pin CI checkout and Node setup actions to releases using Node 24. Refresh the
+  development dependency lockfile to remove six reported advisories; `npm audit`
+  reports zero findings. Runtime dependencies are unchanged.
 - Prepare package, lockfile root metadata, and catalog versions as `0.5.1`
   pending release, so scans and comparisons can distinguish the corrected data.
   Published `0.5.0` is unchanged. Existing installs can load the corrected JSON
